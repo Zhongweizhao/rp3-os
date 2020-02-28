@@ -16,10 +16,10 @@
 #define AUX_MU_STAT_REG ( PBASE + 0x215064 )
 #define AUX_MU_BAUD_REG ( PBASE + 0x215068 )
 
-void uart_init();
-char uart_getc();
-void uart_putc( char c );
-void uart_send_string( char *c );
+void mini_uart_init();
+char mini_uart_getc();
+void mini_uart_putc( char c );
+void mini_uart_send_string( char *c );
 
 #endif
 

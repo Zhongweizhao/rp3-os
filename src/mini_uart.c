@@ -3,7 +3,7 @@
 #include "gpio.h"
 #include "util.h"
 
-void uart_init() {
+void mini_uart_init() {
     unsigned int selector;
 
     selector = get32( GPFSEL1 );
@@ -29,7 +29,7 @@ void uart_init() {
     put32( AUX_MU_CNTL_REG, 3 );
 }
 
-char uart_getc() {
+char mini_uart_getc() {
     for ( ;; ) {
         if ( get32( AUX_MU_LSR_REG ) & 0x01 ) {
             break;
@@ -38,7 +38,7 @@ char uart_getc() {
     return get32( AUX_MU_IO_REG ) & 0xff;
 }
 
-void uart_putc( char c ) {
+void mini_uart_putc( char c ) {
     for ( ;; ) {
         if ( get32( AUX_MU_LSR_REG ) & 0x20 ) {
             break;
@@ -47,7 +47,7 @@ void uart_putc( char c ) {
     put32( AUX_MU_IO_REG, c );
 }
 
-void uart_send_string( char *c ) {
-    while ( *c ) uart_putc( *c++ );
+void mini_uart_send_string( char *c ) {
+    while ( *c ) mini_uart_putc( *c++ );
 }
 
